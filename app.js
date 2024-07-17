@@ -17,11 +17,14 @@ mongoose.connect(uri, {
   useUnifiedTopology: true
 }).then(() => {
   console.log('MongoDB database connection established successfully');
-}).catch(err => console.error('MongoDB connection error:', err));
+})
+.catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
 const employeesRouter = require('./routes/employees');
+const authRouter = require('./routes/auth'); // Add this line
 app.use('/api/employees', employeesRouter);
+app.use('/api/auth', authRouter); // Add this line
 
 // Start server
 app.listen(port, () => {
